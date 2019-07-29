@@ -189,10 +189,10 @@ public class RNAudioRecorderPlayerModule extends ReactContextBaseJavaModule impl
             public void run() {
               WritableMap obj = Arguments.createMap();
               int maxAmplitude = 0;
-                // if (mediaRecorder != null) {
-                //   maxAmplitude = mp.getMaxAmplitude();
-                // }
-              obj.putDouble("current_metering", mp);
+                if (mediaRecorder != null) {
+                  maxAmplitude = mp.snoop();
+                }
+              obj.putDouble("current_metering", maxAmplitude);
               obj.putInt("duration", mp.getDuration());
               obj.putInt("current_position", mp.getCurrentPosition());
               sendEvent(reactContext, "rn-playback", obj);
