@@ -157,7 +157,7 @@ public class RNAudioRecorderPlayerModule extends ReactContextBaseJavaModule impl
   public void startPlayer(final String path, final Promise promise) {
     if (mediaPlayer != null) {
       Boolean isPaused = !mediaPlayer.isPlaying() && mediaPlayer.getCurrentPosition() > 1;
-
+        
       if (isPaused) {
         mediaPlayer.start();
         promise.resolve("player resumed.");
@@ -181,7 +181,6 @@ public class RNAudioRecorderPlayerModule extends ReactContextBaseJavaModule impl
         public void onPrepared(final MediaPlayer mp) {
           Log.d(TAG, "mediaplayer prepared and start");
           mp.start();
-
           /**
            * Set timer task to send event to RN.
            */
@@ -190,10 +189,10 @@ public class RNAudioRecorderPlayerModule extends ReactContextBaseJavaModule impl
             public void run() {
               WritableMap obj = Arguments.createMap();
               int maxAmplitude = 0;
-                if (mediaRecorder != null) {
-                    maxAmplitude = mp.getMaxAmplitude();
-                }
-              obj.putDouble("current_metering", maxAmplitude);
+                // if (mediaRecorder != null) {
+                //   maxAmplitude = mp.getMaxAmplitude();
+                // }
+              obj.putDouble("current_metering", mp.getMaxAmplitude());
               obj.putInt("duration", mp.getDuration());
               obj.putInt("current_position", mp.getCurrentPosition());
               sendEvent(reactContext, "rn-playback", obj);
