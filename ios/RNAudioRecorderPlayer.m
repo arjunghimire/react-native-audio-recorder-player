@@ -161,7 +161,7 @@ RCT_EXPORT_METHOD(stopRecorder:(RCTPromiseResolveBlock)resolve
         NSString *filePath = audioFileURL.absoluteString;
         resolve(filePath);
     } else {
-        reject(@"audioRecorder record", @"audioRecorder is not set", nil);
+       // reject(@"audioRecorder record", @"audioRecorder is not set", nil);
     }
 }
 
@@ -232,12 +232,12 @@ RCT_EXPORT_METHOD(startPlayer:(NSString*)path
 RCT_EXPORT_METHOD(resumePlayer: (RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     if (!audioFileURL) {
-        reject(@"audioRecorder resume", @"no audioFileURL", nil);
+       // reject(@"audioRecorder resume", @"no audioFileURL", nil);
         return;
     }
 
     if (!audioPlayer) {
-        reject(@"audioRecorder resume", @"no audioPlayer", nil);
+      //  reject(@"audioRecorder resume", @"no audioPlayer", nil);
         return;
     }
 
@@ -256,7 +256,7 @@ RCT_EXPORT_METHOD(seekToPlayer: (nonnull NSNumber*) time
     if (audioPlayer) {
         audioPlayer.currentTime = [time doubleValue];
     } else {
-        reject(@"audioPlayer seekTo", @"audioPlayer is not set", nil);
+      //  reject(@"audioPlayer seekTo", @"audioPlayer is not set", nil);
     }
 }
 
@@ -271,7 +271,7 @@ RCT_EXPORT_METHOD(pausePlayer: (RCTPromiseResolveBlock)resolve
         } 
         resolve(@"pause play");
     } else {
-        reject(@"audioPlayer pause", @"audioPlayer is not playing", nil);
+      //  reject(@"audioPlayer pause", @"audioPlayer is not playing", nil);
     }
 }
 
@@ -287,7 +287,7 @@ RCT_EXPORT_METHOD(stopPlayer:(RCTPromiseResolveBlock)resolve
         audioPlayer = nil;
         resolve(@"stop play");
     } else {
-        reject(@"audioPlayer stop", @"audioPlayer is not set", nil);
+        // reject(@"audioPlayer stop", @"audioPlayer is not set", nil);
     }
 }
 
