@@ -210,7 +210,7 @@ RCT_EXPORT_METHOD(startPlayer:(NSString*)path
         }
 
         if (!audioPlayer) {
-            RCTLogInfo(@"audio player alloc");
+            // RCTLogInfo(@"audio player alloc");
             audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileURL error:nil];
             audioPlayer.delegate = self;
         }
